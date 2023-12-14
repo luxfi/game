@@ -158,7 +158,7 @@ class Level extends React.Component {
               <div style={{ textAlign: "center" }}>
                 <p>
                   {strings.levelNotTranslated}
-                  <a href="https://github.com/openzeppelin/lux#adding-new-languages">
+                  <a href="https://github.com/luxdefi/game#adding-new-languages">
                     {strings.contributeTranslation}
                   </a>
                 </p>

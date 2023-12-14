@@ -387,7 +387,7 @@ class Header extends React.Component {
                     <div className="dropdown-pill">
                       <a
                         className="contr"
-                        href="https://github.com/openzeppelin/lux#modify-or-add-new-languages"
+                        href="https://github.com/luxdefi/game#modify-or-add-new-languages"
                       >
                         {strings.contributeTranslation}
                       </a>

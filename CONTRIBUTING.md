@@ -27,7 +27,7 @@ Please follow the steps below. If you're new to git and/or GitHub, we suggest yo
 3. Create a new branch from the latest `master`
 4. Start hacking on the new branch according to the type of contribution outlined below
 5. Commit and push to the new branch
-6. Make a pull request against `OpenZeppelin/lux master`
+6. Make a pull request against `luxdefi/game master`
 
 ## Contribution Types
 

@@ -4,7 +4,7 @@
 
 Change the contract code directly in the repo will change the front-end contract but not the on-chain bytecode of that level. Therefore, while players try to attack a level instance, the front-end will show a different contract than what they actually have to attack, they may differ with function names for example (i.e. selectors).
 
-[`supersede_level.mjs`](https://github.com/OpenZeppelin/lux/blob/master/client/scripts/supersede_level.mjs) script implements a tool to supersede contract deployed on-chain when it will be required (when vulnerable code displayed on the front-end will not exactly match the deployed contracts).
+[`supersede_level.mjs`](https://github.com/luxdefi/game/blob/master/client/scripts/supersede_level.mjs) script implements a tool to supersede contract deployed on-chain when it will be required (when vulnerable code displayed on the front-end will not exactly match the deployed contracts).
 
 The tool performs the substitution by following these steps:
 - Deploys new level contract.
@@ -25,7 +25,7 @@ All this process is required in order to avoid to the users to resolve both vers
 
 ### **Testnet (mainet for lux XD)**
 
-- Select the network in the [`constants.js`](https://github.com/OpenZeppelin/lux/blob/client/src/constants.js) file by uncommenting the `ACTIVE_NETWORK` constant.
+- Select the network in the [`constants.js`](https://github.com/luxdefi/game/blob/client/src/constants.js) file by uncommenting the `ACTIVE_NETWORK` constant.
 
 - run the tool:
 ```bash
@@ -45,7 +45,7 @@ Dumping transactions gas usage can be tuned in `dumpData()` function.
 
 ### **Test in local fork**
 
-- Set lux owner as main account in the hardhat local node by adding following configuration to [`hardhat.config.js`](https://github.com/OpenZeppelin/lux/blob/master/contracts/hardhat.config.js)
+- Set lux owner as main account in the hardhat local node by adding following configuration to [`hardhat.config.js`](https://github.com/luxdefi/game/blob/master/contracts/hardhat.config.js)
 ```javascript
 
 ...
