@@ -6051,6 +6051,13 @@ content-type@~1.0.4:
   resolved "https://registry.npmjs.org/content-type/-/content-type-1.0.4.tgz"
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
 
+contracts@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/contracts/-/contracts-0.1.0.tgz#60cf948660c23a5055a0a5317bdd02bcb2c22923"
+  integrity sha512-xl+cYiral+bDZgk9d2ET36+AdmPYafFeS90MF/lEEOWdPjDJ9vocwfdLQ0X2Ai1lqov6FH26QJjBa3NWEaXCeA==
+  dependencies:
+    validator "> 0.2.0"
+
 convert-source-map@1.7.0:
   version "1.7.0"
   resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.7.0.tgz"
@@ -17712,6 +17719,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+"validator@> 0.2.0":
+  version "13.11.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.11.0.tgz#23ab3fd59290c61248364eabf4067f04955fbb1b"
+  integrity sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==
 
 varint@^5.0.0:
   version "5.0.2"

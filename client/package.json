@@ -1,5 +1,5 @@
 {
-  "name": "@luxdefi/game/client",
+  "name": "@luxgame/client",
   "type": "module",
   "version": "0.1.0",
   "private": true,

@@ -1,5 +1,5 @@
 {
-  "name": "@luxdefi/game/contracts",
+  "name": "@luxgame/contracts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
