@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 // import all the abi's required to deploy
 import {Ownable} from "openzeppelin-contracts-08/access/Ownable.sol";
-import {Lux} from "../Lux.sol";
+import {Game} from "../Game.sol";
 import {Statistics} from "../metrics/Statistics.sol";
 import {ProxyStats} from "../proxy/ProxyStats.sol";
 import {ProxyAdmin} from "../proxy/ProxyAdmin.sol";
@@ -10,35 +10,35 @@ import {Level} from "../levels/base/Level.sol";
 
 // deploy all the nexessary contract in steps
 contract Factory is Ownable {
-    Lux public lux;
+    Game public game;
     ProxyAdmin public proxyAdmin;
     Statistics public implementation;
     ProxyStats public proxyStats;
 
     constructor() {
         // deploy the four core contracts
-        lux = new Lux();
+        game = new Game();
         proxyAdmin = new ProxyAdmin();
         implementation = new Statistics();
         proxyStats = new ProxyStats(
             address(implementation),
             address(proxyAdmin),
-            address(lux)
+            address(game)
         );
-        // initialise the lux contract with the proxystats method
-        lux.setStatistics(address(proxyStats));
+        // initialise the game contract with the proxystats method
+        game.setStatistics(address(proxyStats));
         // here is where statistics seats behind the proxy
         implementation = Statistics(address(proxyStats));
     }
 
-    // use this function to register a level since this address is the owner of lux
+    // use this function to register a level since this address is the owner of game
     function registerLevel(Level _level) public onlyOwner {
-        lux.registerLevel(_level);
+        game.registerLevel(_level);
     }
 
-    // use this function to transfer the ownership of the lux contract to a new user(lux?)
+    // use this function to transfer the ownership of the game contract to a new user(game?)
     function transferContractsOwnership(address _newOwner) public onlyOwner {
-        lux.transferOwnership(_newOwner);
+        game.transferOwnership(_newOwner);
         proxyAdmin.transferOwnership(_newOwner);
         transferOwnership(_newOwner);
     }

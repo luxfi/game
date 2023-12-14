@@ -27,7 +27,7 @@ interface IStatistics {
     ) external;
 }
 
-contract Lux is Ownable {
+contract Game is Ownable {
     IStatistics public statistics;
 
     // ----------------------------------
