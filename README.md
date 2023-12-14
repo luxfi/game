@@ -1,15 +1,23 @@
 # game
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/OpenZeppelin?style=plastic&logo=twitter)](https://twitter.com/OpenZeppelin)
-[![OpenZeppelin Forum](https://img.shields.io/badge/Lux%20Forum%20-discuss-blue?style=plastic&logo=discourse)](https://forum.openzeppelin.com/tag/lux)
+[![Follow Lux](https://img.shields.io/twitter/follow/luxdefi?style=plastic&logo=twitter)](https://twitter.com/luxdefi)
+[![Lux Forum](https://img.shields.io/badge/Lux%20Forum%20-discuss-blue?style=plastic&logo=discourse)](https://forum.lux.network/)
 
-Lux Game is a Web3/Solidity based wargame inspired by [overthewire](https://overthewire.org), to be played in the Ethereum Virtual Machine. Each level is a smart contract that needs to be 'hacked'.
+"Infinite Game" is a novel Web3/Solidity-based ARG, inspired by the likes of
+OverTheWire and built upon the Ethereum Virtual Machine. Each level of the game
+is meant to be 'hacked', offering an interactive, immersive experience for both
+learning DeFi and Lux as well as preserving a catalog of historical hacks.
+Unlike traditional games, Infinite Game features an unlimited number of levels
+and doesn’t require sequential progression. This game is designed to enhance
+network adoption and provide liquidity rewards for Lux early adopters, creating
+an engaging alternate reality experience blended with real-world cryptocurrency
+challenges.
 
 The game acts both as a tool for those interested in learning ethereum, and as a way to catalogue historical hacks as levels. There can be an infinite number of levels and the game does not require to be played in any particular order.
 
 ## Deployed Versions
 
-You can find the current, official version at: [lux.openzeppelin.com](https://lux.openzeppelin.com)
+You can find the current, official version at: [infinite.game](https://infinite.game)
 
 ## Install and Build
 
@@ -50,10 +58,10 @@ In order to install, build, and run Lux locally, follow these instructions:
     yarn deploy:contracts
     ```
 
-7. Start Lux locally
+7. Start Game locally
 
     ```bash
-    yarn start:lux
+    yarn start:game
     ```
 
 ### Running locally (sepolia network)
@@ -72,7 +80,7 @@ yarn test:contracts
 ### Building
 
 ```bash
-yarn build:lux
+yarn build:game
 ```
 
 ### Deploying
