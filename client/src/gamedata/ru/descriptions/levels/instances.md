@@ -29,27 +29,27 @@
 
 Это поможет тебе по ходу игры.
 
-#### 4. Контракт Ethernaut
+#### 4. Контракт Lux
 
-Получить объект контракта Ethernaut можно с помощью команды:
+Получить объект контракта Lux можно с помощью команды:
 
-`ethernaut`
+`lux`
 
-Большую часть времени ты будешь взаимодействовать с контрактом Ethernaut через веб-интерфейс, но у тебя всегда есть возможность взаимодействовать с ним через консоль браузера.
+Большую часть времени ты будешь взаимодействовать с контрактом Lux через веб-интерфейс, но у тебя всегда есть возможность взаимодействовать с ним через консоль браузера.
 
 Аналогичным образом можно взаимодействовать с другими контрактами в игре, в частности с инстансами, поэтому сейчас удачная возможность потренироваться в этом.
 
-Раскрой объект `ethernaut` в консоли, чтобы посмотреть какие объекты и функции он содержит.
+Раскрой объект `lux` в консоли, чтобы посмотреть какие объекты и функции он содержит.
 
 #### 5. Interact with the ABI
 
-`ethernaut` is a `TruffleContract` object that wraps the `Ethernaut.sol` contract that has been deployed to the blockchain.
+`lux` is a `TruffleContract` object that wraps the `Lux.sol` contract that has been deployed to the blockchain.
 
-Among other things, the contract's ABI exposes all of `Ethernaut.sol`'s public methods, such as `owner`. Type the following command for example:
+Among other things, the contract's ABI exposes all of `Lux.sol`'s public methods, such as `owner`. Type the following command for example:
 
-`ethernaut.owner()` or `await ethernaut.owner()` if you're using Chrome v62.
+`lux.owner()` or `await lux.owner()` if you're using Chrome v62.
 
-You can see who the owner of the ethernaut contract is.
+You can see who the owner of the lux contract is.
 
 #### 6. Получи тестовый эфир
 
@@ -59,7 +59,7 @@ Once you see some coins in your balance, move on to the next step.
 
 #### 7. Получи инстанс
 
-Для прохождения игры тебе не придется взаимодействовать с контрактом `ethernaut` напрямую, вместо этого ты будешь запрашиваешь создание **инстанса уровня** и взаимодействовать с созданным инстансом.
+Для прохождения игры тебе не придется взаимодействовать с контрактом `lux` напрямую, вместо этого ты будешь запрашиваешь создание **инстанса уровня** и взаимодействовать с созданным инстансом.
 
 Чтобы запросить инстанс нажми на соответствующую кнопку внизу этой страницы и подтверди транзакцию в MetaMask. После этого в консоли должно появиться несколько новых сообщений.
 
@@ -73,7 +73,7 @@ Once you see some coins in your balance, move on to the next step.
 
 `contract`
 
-Взаимодействие с инстансом аналогично взаимодействию с контрактом `ethernaut`.
+Взаимодействие с инстансом аналогично взаимодействию с контрактом `lux`.
 
 #### 9. Взаимодействуй с контрактом, чтобы завершить уровень
 

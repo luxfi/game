@@ -1,4 +1,4 @@
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const DexFactory = artifacts.require('./levels/DexFactory.sol');
 const SwappableToken = artifacts.require('SwappableToken');
 const Dex = artifacts.require('./levels/Dex.sol');
@@ -12,7 +12,7 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('Dex', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let owner = accounts[1];
   let player = accounts[0];
@@ -23,14 +23,14 @@ contract('Dex', function (accounts) {
   // console.log(`player is ${player}`)
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await DexFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
   });
 
   it('should allow the player to solve the level', async function () {
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Dex
@@ -79,7 +79,7 @@ contract('Dex', function (accounts) {
 
     // Check win.
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

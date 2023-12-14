@@ -1,7 +1,7 @@
 const PrivacyFactory = artifacts.require('./levels/PrivacyFactory.sol');
 const Privacy = artifacts.require('./attacks/Privacy.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const {
   BN,
   constants,
@@ -12,18 +12,18 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('Privacy', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let instance;
   let player = accounts[0];
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await PrivacyFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
     instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Privacy,
@@ -57,7 +57,7 @@ contract('Privacy', function (accounts) {
 
       // Factory check (should pass)
       const completed = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player

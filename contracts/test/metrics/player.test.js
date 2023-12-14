@@ -10,7 +10,7 @@ contract('Player metrics', (accounts) => {
   let statistics;
 
   let [
-    ETHERNAUT_ADDRESS,
+    LUX_ADDRESS,
     PLAYER_ADDRESS_1,
     PLAYER_ADDRESS_2,
     PLAYER_ADDRESS_3,
@@ -25,7 +25,7 @@ contract('Player metrics', (accounts) => {
     describe('Creation of statistics contract', () => {
       it('should create a new statistics contract', async () => {
         statistics = await Statistics.new();
-        await statistics.initialize(ETHERNAUT_ADDRESS);
+        await statistics.initialize(LUX_ADDRESS);
         expect(statistics.address).to.contain('0x');
       });
     });

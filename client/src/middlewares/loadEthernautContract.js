@@ -1,29 +1,29 @@
 import * as ethutil from '../utils/ethutil'
-import EthernautABI from 'contracts/build/contracts/Ethernaut.sol/Ethernaut.json'
+import LuxABI from 'contracts/build/contracts/Lux.sol/Lux.json'
 import * as actions from '../actions';
 import { loadTranslations } from '../utils/translations'
 
 let language = localStorage.getItem('lang')
 let strings = loadTranslations(language)
 
-const loadEthernautContract = store => next => action => {
-  if (action.type !== actions.LOAD_ETHERNAUT_CONTRACT) return next(action)
+const loadLuxContract = store => next => action => {
+  if (action.type !== actions.LOAD_LUX_CONTRACT) return next(action)
   if (action.contract !== undefined) return next(action)
 
   const state = store.getState()
   if (
     !state.network.web3 ||
     !state.player.address ||
-    !state.gamedata.ethernautAddress
+    !state.gamedata.luxAddress
   ) {
-    // console.log(`UNABLE TO LOAD ETHERNAUT`)
+    // console.log(`UNABLE TO LOAD LUX`)
     return next(action)
   }
-  // console.log(`GETTING ETHERNAUT...`, state.gamedata.ethernautAddress)
+  // console.log(`GETTING LUX...`, state.gamedata.luxAddress)
 
   // Get contract template
-  const Ethernaut = ethutil.getTruffleContract(
-    EthernautABI,
+  const Lux = ethutil.getTruffleContract(
+    LuxABI,
     {
       from: state.player.address,
       gasPrice: state.network.gasPrice
@@ -31,13 +31,13 @@ const loadEthernautContract = store => next => action => {
   )
 
   // Get deployed instance
-  Ethernaut.at(state.gamedata.ethernautAddress)
+  Lux.at(state.gamedata.luxAddress)
     .then(instance => {
 
-      console.info(`=> ${strings.ethernautAddressMessage}\n${instance.address}`)
+      console.info(`=> ${strings.luxAddressMessage}\n${instance.address}`)
 
       // for player interaction via the browser's console
-      window.ethernaut = instance
+      window.lux = instance
 
       action.contract = instance
       
@@ -53,8 +53,8 @@ const loadEthernautContract = store => next => action => {
     })
     .catch((err) => {
       console.log({ err })
-      console.error(`@bad ${strings.ethernautNotFoundMessage}`)
+      console.error(`@bad ${strings.luxNotFoundMessage}`)
     })
 }
 
-export default loadEthernautContract
+export default loadLuxContract

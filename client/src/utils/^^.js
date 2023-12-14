@@ -231,7 +231,7 @@ function setupConsoleUtils() {
   window.help = function () {
     console.table({
       'player': strings.helperPlayer,
-      'ethernaut': strings.helperEthernaut,
+      'lux': strings.helperLux,
       'level': strings.helperLevel,
       'contract': strings.helperContract,
       'instance': strings.helperInstance,

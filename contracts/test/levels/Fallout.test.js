@@ -1,7 +1,7 @@
 const FalloutFactory = artifacts.require('./levels/FalloutFactory.sol');
 const Fallout = artifacts.require('./attacks/Fallout.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const {
   BN,
   constants,
@@ -12,22 +12,22 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('Fallout', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let owner = accounts[1];
   let player = accounts[0];
   let statproxy;
 
   beforeEach(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await FalloutFactory.new();
-    await ethernaut.registerLevel(level.address);
-    //console.log(ethernaut.address, level.address)
+    await lux.registerLevel(level.address);
+    //console.log(lux.address, level.address)
   });
 
   it('should allow the player to solve the level', async function () {
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Fallout,
@@ -41,7 +41,7 @@ contract('Fallout', function (accounts) {
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

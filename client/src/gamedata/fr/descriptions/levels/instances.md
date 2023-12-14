@@ -32,10 +32,10 @@ help()
 Cela vous sera super pratique pendant le jeu.
 
 &nbsp;
-#### 4. Le contrat ethernaut
+#### 4. Le contrat lux
 Entrez la commande suivante dans la console:
 ```
-ethernaut
+lux
 ```
 
 Il s'agit du contrat intelligent principal du jeu. Vous n'avez pas besoin d'interagir avec lui directement via la console ( car cette application le fera pour vous) mais vous pouvez le faire si vous le souhaitez. Jouer avec cet objet est un excellent moyen d'apprendre à interagir avec les autres contrats intelligents du jeu.
@@ -43,14 +43,14 @@ Allez-y étendez l'objet éthernaut pour voir ce qu'il y a dedans.
 
 &nbsp;
 #### 5. Interagir avec l'ABI
-`ethernaut` est un objet `TruffleContract` qui englobe le contrat `Ethernaut.sol` qui a été déployé dans la blockchain.
+`lux` est un objet `TruffleContract` qui englobe le contrat `Lux.sol` qui a été déployé dans la blockchain.
 
-Entre autres, l'ABI du contrat expose toutes les méthodes publiques de `Ethernaut.sol`, telles que `owner`. Tapez par exemple la commande suivante :
+Entre autres, l'ABI du contrat expose toutes les méthodes publiques de `Lux.sol`, telles que `owner`. Tapez par exemple la commande suivante :
 ```
-ethernaut.owner()
+lux.owner()
 ```
-###### `await ethernaut.owner()` si vous utilisez Chrome v62.
-Vous pouvez voir qui est le propriétaire du contrat ethernaut, qui n'est pas vous bien sûr =D.
+###### `await lux.owner()` si vous utilisez Chrome v62.
+Vous pouvez voir qui est le propriétaire du contrat lux, qui n'est pas vous bien sûr =D.
 
 &nbsp;
 #### 6. Obtenir des éthers de test
@@ -60,13 +60,13 @@ Une fois que vous voyez des éthers sur votre sole, passons à l'étape suivante
 
 &nbsp;
 #### 7. Créer une instance de niveau
-Quand vous jouez sur un niveau, vous n'interagissez pas directement avec le contrat ethernaut. Vous lui demandez plutôt de générer une **instance de niveau** pour vous. Pour ce faire, cliquez sur le bouton bleu en bas de la page. Allez le faire maintenat et revenez. !
+Quand vous jouez sur un niveau, vous n'interagissez pas directement avec le contrat lux. Vous lui demandez plutôt de générer une **instance de niveau** pour vous. Pour ce faire, cliquez sur le bouton bleu en bas de la page. Allez le faire maintenat et revenez. !
 
 Metamask devrez vous demander d'autoriser la transaction. Faites-le, et vous devriez voir quelques messages dans la console. Notez que cela déploie un nouveau contrat dans la blockchain et que cela peut prendre quelques secondes, donc soyez patient lorsque vous demandez de nouvelles instances de niveau.
 
 &nbsp;
 #### 8. Inspecter le contract
-De la même manière que vous l'avez fait pour le contrat ethernaut, vous pouvez inspecter l'ABI de ce contrat grâce à la console en utilisant la variable `contract`.
+De la même manière que vous l'avez fait pour le contrat lux, vous pouvez inspecter l'ABI de ce contrat grâce à la console en utilisant la variable `contract`.
 
 &nbsp;
 #### 9. Interagir avec le contrat pour finir le niveau

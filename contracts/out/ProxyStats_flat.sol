@@ -779,12 +779,12 @@ contract ProxyStats is TransparentUpgradeableProxy {
     constructor(
         address _impl,
         address _admin,
-        address _ethernautAddress
+        address _luxAddress
     )
         TransparentUpgradeableProxy(
             _impl,
             _admin,
-            abi.encodeWithSignature("initialize(address)", _ethernautAddress)
+            abi.encodeWithSignature("initialize(address)", _luxAddress)
         )
     {}
 }

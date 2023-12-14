@@ -3,4 +3,4 @@
 &nbsp;
 このレベルのヒント
 
-- 上記のヘルプページ、["Beyond the console"](https://ethernaut.openzeppelin.com/help) の項を参照してください。
+- 上記のヘルプページ、["Beyond the console"](https://lux.openzeppelin.com/help) の項を参照してください。

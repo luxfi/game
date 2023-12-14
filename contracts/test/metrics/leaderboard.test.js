@@ -9,7 +9,7 @@ chai.use(solidity);
 contract('Player metrics', (accounts) => {
   let statistics;
   let [
-    ETHERNAUT_ADDRESS,
+    LUX_ADDRESS,
     PLAYER_ADDRESS_1,
     LEVEL_FACTORY_ADDRESS_1,
     LEVEL_FACTORY_ADDRESS_2,
@@ -23,7 +23,7 @@ contract('Player metrics', (accounts) => {
 describe('Statistics', function () {
     before(async () => { 
       statistics = await Statistics.new();
-      await statistics.initialize(ETHERNAUT_ADDRESS);
+      await statistics.initialize(LUX_ADDRESS);
 
       await statistics.saveNewLevel(LEVEL_FACTORY_ADDRESS_1);
       await statistics.saveNewLevel(LEVEL_FACTORY_ADDRESS_2);

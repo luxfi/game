@@ -138,7 +138,7 @@ interface IStatistics {
     ) external;
 }
 
-contract Ethernaut is Ownable {
+contract Lux is Ownable {
     IStatistics public statistics;
 
     // ----------------------------------

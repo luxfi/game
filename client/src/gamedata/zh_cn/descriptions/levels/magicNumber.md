@@ -1,4 +1,4 @@
-要通过这一关，你需要提供一个Solver合约给Ethernaut，这个合约需要用一个正确的数字响应whatIsTheMeaningOfLife()。
+要通过这一关，你需要提供一个Solver合约给Lux，这个合约需要用一个正确的数字响应whatIsTheMeaningOfLife()。
 很简单对吗？注意一个陷阱。
 Solver合约的代码需要很小，至多不超过10个字节。
 

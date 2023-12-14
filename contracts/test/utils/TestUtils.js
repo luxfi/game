@@ -1,4 +1,4 @@
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const { ethers, upgrades } = require('hardhat');
 
 exports.getBalance = (web3, address) => {
@@ -35,7 +35,7 @@ exports.skipBlock = (web3) => {
 };
 
 exports.createLevelInstance = async (
-  ethernaut,
+  lux,
   levelAddress,
   player,
   levelInstanceClass,
@@ -43,7 +43,7 @@ exports.createLevelInstance = async (
 ) => {
   return new Promise(async function (resolve, reject) {
     const data = params || { from: player };
-    const tx = await ethernaut.createLevelInstance(levelAddress, data);
+    const tx = await lux.createLevelInstance(levelAddress, data);
     if (tx.logs.length === 0) reject();
     else {
       const events = tx.logs.filter(
@@ -57,7 +57,7 @@ exports.createLevelInstance = async (
 };
 
 exports.submitLevelInstance = async (
-  ethernaut,
+  lux,
   levelAddress,
   instanceAddress,
   player,
@@ -65,7 +65,7 @@ exports.submitLevelInstance = async (
 ) => {
   return new Promise(async function (resolve) {
     const data = params || { from: player };
-    const tx = await ethernaut.submitLevelInstance(instanceAddress, data);
+    const tx = await lux.submitLevelInstance(instanceAddress, data);
     if (tx.logs.length === 0) resolve(false);
     else {
       const events = tx.logs.filter((e) => e.event === 'LevelCompletedLog');
@@ -78,12 +78,12 @@ exports.submitLevelInstance = async (
   });
 };
 
-exports.getEthernautWithStatsProxy = async () => {
-  const ethernaut = await Ethernaut.new();
+exports.getLuxWithStatsProxy = async () => {
+  const lux = await Lux.new();
   const implementation = await ethers.getContractFactory('Statistics');
   const ProxyStats = await upgrades.deployProxy(implementation, [
-    ethernaut.address,
+    lux.address,
   ]);
-  await ethernaut.setStatistics(ProxyStats.address);
-  return ethernaut;
+  await lux.setStatistics(ProxyStats.address);
+  return lux;
 };

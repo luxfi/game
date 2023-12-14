@@ -1,32 +1,32 @@
-# Ethernaut
- 
-[![Twitter Follow](https://img.shields.io/twitter/follow/OpenZeppelin?style=plastic&logo=twitter)](https://twitter.com/OpenZeppelin)
-[![OpenZeppelin Forum](https://img.shields.io/badge/Ethernaut%20Forum%20-discuss-blue?style=plastic&logo=discourse)](https://forum.openzeppelin.com/tag/ethernaut)
+# game
 
-Ethernaut is a Web3/Solidity based wargame inspired by [overthewire](https://overthewire.org), to be played in the Ethereum Virtual Machine. Each level is a smart contract that needs to be 'hacked'.
+[![Twitter Follow](https://img.shields.io/twitter/follow/OpenZeppelin?style=plastic&logo=twitter)](https://twitter.com/OpenZeppelin)
+[![OpenZeppelin Forum](https://img.shields.io/badge/Lux%20Forum%20-discuss-blue?style=plastic&logo=discourse)](https://forum.openzeppelin.com/tag/lux)
+
+Lux Game is a Web3/Solidity based wargame inspired by [overthewire](https://overthewire.org), to be played in the Ethereum Virtual Machine. Each level is a smart contract that needs to be 'hacked'.
 
 The game acts both as a tool for those interested in learning ethereum, and as a way to catalogue historical hacks as levels. There can be an infinite number of levels and the game does not require to be played in any particular order.
 
 ## Deployed Versions
 
-You can find the current, official version at: [ethernaut.openzeppelin.com](https://ethernaut.openzeppelin.com)
+You can find the current, official version at: [lux.openzeppelin.com](https://lux.openzeppelin.com)
 
 ## Install and Build
 
-There are three components to Ethernaut that are needed to run/deploy in order to work with it locally:
+There are three components to Lux that are needed to run/deploy in order to work with it locally:
 
 - Test Network - A testnet that is running locally, like ganache, hardhat network, geth, etc
 - Contract Deployment - In order to work with the contracts, they must be deployed to the locally running testnet
 - The Client/Frontend - This is a React app that runs locally and can be accessed on localhost:3000
 
-In order to install, build, and run Ethernaut locally, follow these instructions:
+In order to install, build, and run Lux locally, follow these instructions:
 
 0. Be sure to use a compatible Node version. If you use `nvm` you can run `nvm use` at the root level to be sure to select a compatible version.
 
 1. Clone the repo and install dependencies:
 
     ```bash
-    git clone git@github.com:OpenZeppelin/ethernaut.git
+    git clone git@github.com:luxdefi/game.git
     yarn install
     ```
 
@@ -50,10 +50,10 @@ In order to install, build, and run Ethernaut locally, follow these instructions
     yarn deploy:contracts
     ```
 
-7. Start Ethernaut locally
+7. Start Lux locally
 
     ```bash
-    yarn start:ethernaut
+    yarn start:lux
     ```
 
 ### Running locally (sepolia network)
@@ -72,7 +72,7 @@ yarn test:contracts
 ### Building
 
 ```bash
-yarn build:ethernaut
+yarn build:lux
 ```
 
 ### Deploying

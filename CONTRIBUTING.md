@@ -1,6 +1,6 @@
-# Contributing to Ethernaut
+# Contributing to Lux
 
-Thank you for your interesting in contributing to Ethernaut!
+Thank you for your interesting in contributing to Lux!
 
 Please follow the steps below. If you're new to git and/or GitHub, we suggest you go through the [GitHub Guides](https://guides.github.com/introduction/flow/).
 
@@ -9,25 +9,25 @@ Please follow the steps below. If you're new to git and/or GitHub, we suggest yo
    - Using SSH
 
         ```bash
-        git clone --filter=blob:none git@github.com:<username>/ethernaut.git
+        git clone --filter=blob:none git@github.com:<username>/lux.git
         ```
 
    - Using HTTPS
 
         ```bash
-        git clone --filter=blob:none https://github.com/<username>/ethernaut.git
+        git clone --filter=blob:none https://github.com/<username>/lux.git
         ```
 
    - Using GitHub CLI
 
         ```bash
-        gh repo clone <username>/ethernaut -- --filter=blob:none
+        gh repo clone <username>/lux -- --filter=blob:none
         ```
 
 3. Create a new branch from the latest `master`
 4. Start hacking on the new branch according to the type of contribution outlined below
 5. Commit and push to the new branch
-6. Make a pull request against `OpenZeppelin/ethernaut master`
+6. Make a pull request against `OpenZeppelin/lux master`
 
 ## Contribution Types
 
@@ -38,14 +38,14 @@ Currently, we are reviewing contributions of the following types:
 - [Translations and additional languages](#translations-and-additional-languages)
 - [Documentation updates and corrections](#documentation-updates-and-corrections)
 
-If you would like to contribute in another way, please reach out to us via email: [ethernaut@zeppelin.solutions](mailto:ethernaut@zeppelin.solutions)
+If you would like to contribute in another way, please reach out to us via email: [lux@zeppelin.solutions](mailto:lux@zeppelin.solutions)
 
 ### Level development
 
 *A level is composed of the following elements:*
 
-- A `<Level>Factory.sol` contract, where `<Level>` is replaced by the name of the level, that needs to extend [`Level.sol`](./contracts/contracts/levels/base/Level.sol). This factory contract will be deployed only once and registered on Ethernaut.sol by Ethernaut's owner. Players never interact with the factory directly. The factory is in charge of creating level instances for players to use (1 instance per player) and to check these instances to verify if the player has passed the level. Factories should not have state that can be changed by the player.
-- A `level instance` contract named `<Level>.sol`, where `<Level>` is replaced by the name of the level, that is emitted by the factory for each player that requests it. Instances need to be completely decouppled from Ethernaut's architecture. Factories will emit them and verify them. That is, level instances don't know anything about their factories or Ethernaut. An instance's state can be completely demolished by players and even destroyed since they are not really part of the architecture, just a challenge for a player to use at will.
+- A `<Level>Factory.sol` contract, where `<Level>` is replaced by the name of the level, that needs to extend [`Level.sol`](./contracts/contracts/levels/base/Level.sol). This factory contract will be deployed only once and registered on Lux.sol by Lux's owner. Players never interact with the factory directly. The factory is in charge of creating level instances for players to use (1 instance per player) and to check these instances to verify if the player has passed the level. Factories should not have state that can be changed by the player.
+- A `level instance` contract named `<Level>.sol`, where `<Level>` is replaced by the name of the level, that is emitted by the factory for each player that requests it. Instances need to be completely decouppled from Lux's architecture. Factories will emit them and verify them. That is, level instances don't know anything about their factories or Lux. An instance's state can be completely demolished by players and even destroyed since they are not really part of the architecture, just a challenge for a player to use at will.
 - A `description file` in [the descriptions directory](./client/src/gamedata/en/descriptions/levels) that the UI presents to the player and describes the level's objectives with some narrative and tips.
 - A `description completion file` also located in [the descriptions directory](./client/src/gamedata/en/descriptions/levels) that the UI presents to the player when the level is passed, further information about the player, historical insights, further explanations or just a congrats message.
 - A `tests file` in the [`test directory`](./contracts/test/levels/) that performs unit tests on the level.

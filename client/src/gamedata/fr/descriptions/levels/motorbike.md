@@ -1,4 +1,4 @@
-La moto d'Ethernaut a une toute nouvelle conception de moteur évolutive.
+La moto d'Lux a une toute nouvelle conception de moteur évolutive.
 
 Seriez-vous capable d'autodétruire (`selfdestruct`) son moteur et de rendre la moto inutilisable ?
 

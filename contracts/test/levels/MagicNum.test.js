@@ -3,7 +3,7 @@ const MagicNum = artifacts.require('./levels/MagicNum.sol');
 const MagicNumSolver = artifacts.require('./attacks/MagicNumSolver.sol');
 const MagicNumBadSolver = artifacts.require('./attacks/MagicNumBadSolver.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const {
   BN,
   constants,
@@ -14,18 +14,18 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('MagicNum', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let instance;
   let player = accounts[0];
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await MagicNumFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
     instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       MagicNum,
@@ -40,7 +40,7 @@ contract('MagicNum', function (accounts) {
       await instance.setSolver(badSolver.address);
 
       const completed = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player
@@ -55,7 +55,7 @@ contract('MagicNum', function (accounts) {
       await instance.setSolver(solver.address);
 
       const completed = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player

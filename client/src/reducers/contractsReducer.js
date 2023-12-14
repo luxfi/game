@@ -1,7 +1,7 @@
 import * as actions from '../actions';
 
 const initialState = {
-  ethernaut: undefined,
+  lux: undefined,
   levels: {},
   nonce: 0
 }
@@ -9,10 +9,10 @@ const initialState = {
 const contractsReducer = function(state = initialState, action) {
   switch(action.type) {
 
-    case actions.LOAD_ETHERNAUT_CONTRACT:
+    case actions.LOAD_LUX_CONTRACT:
       return {
         ...state,
-        ethernaut: action.contract
+        lux: action.contract
       };
 
     case actions.LOAD_LEVEL_INSTANCE:

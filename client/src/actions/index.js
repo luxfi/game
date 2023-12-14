@@ -13,8 +13,8 @@ export const setPlayerAddress = address => ({ type: SET_PLAYER_ADDRESS, address 
 export const LOAD_GAME_DATA = "LOAD_GAME_DATA";
 export const loadGamedata = () => ({ type: LOAD_GAME_DATA, levels: undefined })
 
-export const LOAD_ETHERNAUT_CONTRACT = "LOAD_ETHERNAUT_CONTRACT";
-export const loadEthernautContract = () => ({ type: LOAD_ETHERNAUT_CONTRACT, contract: undefined })
+export const LOAD_LUX_CONTRACT = "LOAD_LUX_CONTRACT";
+export const loadLuxContract = () => ({ type: LOAD_LUX_CONTRACT, contract: undefined })
 
 export const ACTIVATE_LEVEL = "ACTIVATE_LEVEL";
 export const activateLevel = address => ({ type: ACTIVATE_LEVEL, address })

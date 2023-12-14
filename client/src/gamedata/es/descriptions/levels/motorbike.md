@@ -1,4 +1,4 @@
-La motocicleta de Ethernaut tiene un nuevo diseño de motor actualizable.
+La motocicleta de Lux tiene un nuevo diseño de motor actualizable.
 
 ¿Serías capaz de `selfdestruct` su motor y romper la moto?
 

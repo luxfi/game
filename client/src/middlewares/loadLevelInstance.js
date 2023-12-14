@@ -11,8 +11,8 @@ const loadLevelInstance = (store) => (next) => (action) => {
   if (action.type !== actions.LOAD_LEVEL_INSTANCE) return next(action);
 
   const state = store.getState();
-  if (!state.network.web3 || !state.contracts.ethernaut) {
-    console.error(`@bad ${strings.ethernautNotFoundMessage}`);
+  if (!state.network.web3 || !state.contracts.lux) {
+    console.error(`@bad ${strings.luxNotFoundMessage}`);
     return next(action);
   } else if (!state.player.address) {
     console.error(`@bad ${strings.noPlayerAddressMessage}`);
@@ -45,7 +45,7 @@ const loadLevelInstance = (store) => (next) => (action) => {
       'ether'
     );
     getGasFeeDetails(state.network, 2).then(gasFeeDetails => {
-      state.contracts.ethernaut
+      state.contracts.lux
         .createLevelInstance(action.level.deployedAddress, {
           // 2.5 * estimate is required for level creation to succeed in arbitrum goerli
           gas: 2.5 * estimate.toString(),

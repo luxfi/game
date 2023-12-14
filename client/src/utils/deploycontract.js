@@ -63,8 +63,8 @@ export async function deployAndRegisterLevel(level) {
       from
     );
 
-    logger(`Registering ${level.name} level on the ethernaut contract `);
-    // -- use the factory to register a new level since it owns the ethernaut contract
+    logger(`Registering ${level.name} level on the lux contract `);
+    // -- use the factory to register a new level since it owns the lux contract
     const factoryAddress = restoreContract(chainId)["factory"];
     const LocalFactory = await ethutil.getTruffleContract(LocalFactoryABI.default, {
       from,
@@ -101,7 +101,7 @@ export async function deployAdminContracts() {
       { gas: 10000000, ...gasDetails },
       from
     );
-    // -- query factory address for ethernaut, proxy, proxyadmin and implementation
+    // -- query factory address for lux, proxy, proxyadmin and implementation
     const deployedCoreContracts =
       await Promise.all(
         CORE_CONTRACT_NAMES.map((coreContractName) =>

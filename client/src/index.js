@@ -90,7 +90,7 @@ window.addEventListener("load", async () => {
       let player;
       if (accounts.length !== 0 && !error) player = accounts[0];
       store.dispatch(actions.setPlayerAddress(player));
-      store.dispatch(actions.loadEthernautContract());
+      store.dispatch(actions.loadLuxContract());
       ethutil.watchAccountChanges((acct) => {
         store.dispatch(actions.setPlayerAddress(acct));
       }, player);
@@ -129,7 +129,7 @@ window.addEventListener("load", async () => {
 
 //     if (id === constants.NETWORKS.ROPSTEN.id) {
 //       console.error(
-//         `If you want to play on Ropsten, check out https://ropsten.ethernaut.openzeppelin.com/`
+//         `If you want to play on Ropsten, check out https://ropsten.lux.openzeppelin.com/`
 //       );
 //     }
 //   }

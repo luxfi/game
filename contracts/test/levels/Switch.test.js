@@ -6,17 +6,17 @@ const Switch = artifacts.require('./levels/Switch.sol');
 const SwitchFactory = artifacts.require('./levels/SwitchFactory.sol');
 
 contract('Switch', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let instance;
   let player = accounts[0];
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await SwitchFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
     instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Switch,
@@ -28,7 +28,7 @@ contract('Switch', function (accounts) {
     it('should not be immediately solvable', async function () {
       // make sure the factory fails
       const ethCompleted = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player
@@ -92,7 +92,7 @@ contract('Switch', function (accounts) {
 
       // ensure the level is completed
       const ethCompleted = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player

@@ -2,7 +2,7 @@ const Reentrance = artifacts.require('./levels/Reentrance.sol');
 const ReentranceFactory = artifacts.require('./levels/ReentranceFactory.sol');
 const ReentranceAttack = artifacts.require('./attacks/ReentranceAttack.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const {
   BN,
   constants,
@@ -13,16 +13,16 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('Reentrance', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let owner = accounts[1];
   let player = accounts[0];
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await ReentranceFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
   });
 
   it('should allow the player to solve the level', async function () {
@@ -33,7 +33,7 @@ contract('Reentrance', function (accounts) {
     //console.log(`level insertCoin:`, insertCoin)
 
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Reentrance,
@@ -71,7 +71,7 @@ contract('Reentrance', function (accounts) {
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

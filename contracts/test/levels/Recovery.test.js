@@ -4,7 +4,7 @@ const RecoverySimpleToken = artifacts.require(
   './levels/RecoverySimpleToken.sol'
 );
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
@@ -19,21 +19,21 @@ let targetAddress = function (instanceAddress, nonce) {
 
 contract('Recovery', function (accounts) {
   let level;
-  let ethernaut;
+  let lux;
   let player = accounts[0];
   let instance;
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await RecoveryFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
 
     //console.log("here");
     //console.log(level.address);
 
     instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Recovery,
@@ -64,7 +64,7 @@ contract('Recovery', function (accounts) {
   it('should allow the player to solve the level', async function () {
     //console.log('Check complete (should fail)...')
     let completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player
@@ -86,7 +86,7 @@ contract('Recovery', function (accounts) {
     // Factory check (should pass)
     //console.log('Check complete (should pass)...')
     completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

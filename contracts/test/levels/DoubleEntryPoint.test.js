@@ -5,34 +5,34 @@ const DoubleEntryPointFactory = artifacts.require(
 const DetectionBot = artifacts.require('./attacks/DetectionBot.sol');
 const Forta = artifacts.require('./levels/Forta.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const { web3 } = require('openzeppelin-test-helpers/src/setup');
 const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('DoubleEntryPoint', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let owner = accounts[1];
   let player = accounts[0];
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await DoubleEntryPointFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
   });
 
   it('should fail if the player did not solve the level', async function () {
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       DoubleEntryPoint
     );
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player
@@ -43,7 +43,7 @@ contract('DoubleEntryPoint', function (accounts) {
 
   it('should allow the player to solve the level', async function () {
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       DoubleEntryPoint
@@ -58,7 +58,7 @@ contract('DoubleEntryPoint', function (accounts) {
     await fortaContract.setDetectionBot(detectionBot.address, { from: player });
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

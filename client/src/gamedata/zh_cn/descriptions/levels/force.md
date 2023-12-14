@@ -6,4 +6,4 @@
 这可能有帮助:
 * Fallback 方法
 * 有时候攻击一个合约最好的方法是使用另一个合约.
-* 阅读上方的帮助页面, ["Beyond the console"](https://ethernaut.openzeppelin.com/help) 部分
+* 阅读上方的帮助页面, ["Beyond the console"](https://lux.openzeppelin.com/help) 部分

@@ -7,13 +7,13 @@ import * as ethutil from "../src/utils/ethutil.js";
 import * as constants from "../src/constants.js";
 import HDWalletProvider from "@truffle/hdwallet-provider";
 import * as gamedata from "../src/gamedata/gamedata.json" assert { type: "json" };
-import * as EthernautABI from "contracts/build/contracts/Ethernaut.sol/Ethernaut.json" assert { type: "json" };
+import * as LuxABI from "contracts/build/contracts/Lux.sol/Lux.json" assert { type: "json" };
 import * as ProxyAdminABI from "contracts/build/contracts/proxy/ProxyAdmin.sol/ProxyAdmin.json" assert { type: "json" };
 import * as ImplementationABI from "contracts/build/contracts/metrics/Statistics.sol/Statistics.json" assert { type: "json" };
 import * as ProxyStatsABI from "contracts/build/contracts/proxy/ProxyStats.sol/ProxyStats.json" assert { type: "json" };
 
 let web3;
-let ethernaut;
+let lux;
 let proxyAdmin;
 let implementation;
 let proxyStats;
@@ -32,9 +32,9 @@ async function exec() {
   const deployData = loadDeployData(DEPLOY_DATA_PATH);
   // Determine which contracts need to be deployed.
   let count = 0;
-  if (needsDeploy(deployData.ethernaut)) {
+  if (needsDeploy(deployData.lux)) {
     count++;
-    console.log(colors.red(`(${count}) Will deploy Ethernaut.sol!`));
+    console.log(colors.red(`(${count}) Will deploy Lux.sol!`));
   }
   if (needsDeploy(deployData.implementation)) {
     count++;
@@ -84,20 +84,20 @@ async function deployContracts(deployData) {
   if (!from) from = (await web3.eth.getAccounts())[0];
   console.log("FROM: ", from);
 
-  // Deploy/retrieve ethernaut contract
-  const Ethernaut = await ethutil.getTruffleContract(EthernautABI.default, {
+  // Deploy/retrieve lux contract
+  const Lux = await ethutil.getTruffleContract(LuxABI.default, {
     from,
   });
   try {
-    if (needsDeploy(deployData.ethernaut)) {
-      console.log(`Deploying Ethernaut.sol...`);
-      ethernaut = await Ethernaut.new(props);
-      console.log(colors.yellow(`  Ethernaut: ${ethernaut.address}`));
-      deployData.ethernaut = ethernaut.address;
+    if (needsDeploy(deployData.lux)) {
+      console.log(`Deploying Lux.sol...`);
+      lux = await Lux.new(props);
+      console.log(colors.yellow(`  Lux: ${lux.address}`));
+      deployData.lux = lux.address;
     } else {
-      console.log("Using deployed Ethernaut.sol:", deployData.ethernaut);
-      ethernaut = await Ethernaut.at(deployData.ethernaut);
-      // console.log('ethernaut: ', ethernaut);
+      console.log("Using deployed Lux.sol:", deployData.lux);
+      lux = await Lux.at(deployData.lux);
+      // console.log('lux: ', lux);
     }
   } catch (error) {
     console.log(error);
@@ -112,7 +112,7 @@ async function deployContracts(deployData) {
   // Deploy/retrieve ProxyStats
   await deployProxyStats(from, props, deployData);
 
-  // set ProxyStats in Ethernaut
+  // set ProxyStats in Lux
   await setStatProxy(from, props);
 
   // Sweep levels
@@ -143,11 +143,11 @@ async function deployContracts(deployData) {
           )
         );
 
-        // Register level in Ethernaut contract
+        // Register level in Lux contract
         console.log(
-          `  Registering level ${level.levelContract} in Ethernaut.sol...`
+          `  Registering level ${level.levelContract} in Lux.sol...`
         );
-        const tx = await ethernaut.registerLevel(contract.address, props);
+        const tx = await lux.registerLevel(contract.address, props);
         console.log(`Registered ${level.levelContract}!`);
       } else {
         console.log(`Using deployed ${level.levelContract}...`);
@@ -207,7 +207,7 @@ async function deployProxyStats(from, props, deployData) {
   if (needsDeploy(deployData.proxyStats)) {
     console.log(`Deploying Proxy.sol...`);
     proxyStats = await ProxyStats.new(
-      ...[implementation.address, proxyAdmin.address, ethernaut.address],
+      ...[implementation.address, proxyAdmin.address, lux.address],
       props
     );
     console.log(colors.yellow(`  Proxy: ${proxyStats.address}`));
@@ -225,16 +225,16 @@ async function deployProxyStats(from, props, deployData) {
 // ----------------------------------
 
 async function setStatProxy(from, props) {
-  console.log(`Setting proxy in Ethernaut.sol...`);
+  console.log(`Setting proxy in Lux.sol...`);
 
-  const ethernautContract = new web3.eth.Contract(
-    EthernautABI.default.abi,
-    ethernaut.address
+  const luxContract = new web3.eth.Contract(
+    LuxABI.default.abi,
+    lux.address
   );
 
-  let proxy_address = await ethernaut.statistics();
+  let proxy_address = await lux.statistics();
   if (needsSetProxy(proxy_address)) {
-    await ethernautContract.methods.setStatistics(proxyStats.address).send({
+    await luxContract.methods.setStatistics(proxyStats.address).send({
       from,
       ...props,
     });

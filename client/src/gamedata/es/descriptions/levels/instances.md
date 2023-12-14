@@ -29,27 +29,27 @@ help()
 ```
 Esto será muy útil durante el juego.
 
-#### 4. El contrato ethernaut
+#### 4. El contrato lux
 Ingresa el siguiente comando en la consola:
 
 ```
-ethernaut
+lux
 ```
 
 Este es el principal contrato inteligente del juego. No necesitas interactuar con él directamente a través de la consola (ya que esta aplicación lo hará por ti), pero puedes hacerlo si lo deseas. Jugar con este objeto es una excelente manera de aprender a interactuar con los otros contratos inteligentes del juego.
 
-Continúa y expande el objeto ethernaut para ver qué hay dentro.
+Continúa y expande el objeto lux para ver qué hay dentro.
 
 #### 5. Interactuar con el ABI
-`ethernaut` es un objeto `TruffleContract` que envuelve el contrato `Ethernaut.sol` que se ha implementado en la red.
+`lux` es un objeto `TruffleContract` que envuelve el contrato `Lux.sol` que se ha implementado en la red.
 
-Entre otras cosas, el ABI del contrato expone todos los métodos públicos de `Ethernaut.sol`,  como `owner`. Escribe el siguiente comando, por ejemplo:
+Entre otras cosas, el ABI del contrato expone todos los métodos públicos de `Lux.sol`,  como `owner`. Escribe el siguiente comando, por ejemplo:
 ```
-ethernaut.owner()
+lux.owner()
 ```
 
-###### `await ethernaut.owner ()` si estás usando Chrome v62.
-Puedes ver quién es el propietario del contrato de ethernaut, que no eres tú, por supuesto =D.
+###### `await lux.owner ()` si estás usando Chrome v62.
+Puedes ver quién es el propietario del contrato de lux, que no eres tú, por supuesto =D.
 
 #### 6. Obtén el ether de prueba
 Para jugar, necesitarás test ether. La forma más fácil de obtener algo de testnet ether es a través de un faucet válido para la red elegida.
@@ -57,12 +57,12 @@ Para jugar, necesitarás test ether. La forma más fácil de obtener algo de tes
 Una vez que vea algunas monedas en su saldo, continúe con el siguiente paso.
 
 #### 7. Obtener una instancia de nivel
-Al jugar un nivel, no interactúas directamente con el contrato de ethernaut. En su lugar, le pides que genere una **instancia de nivel** para ti. Para hacerlo, haz clic en el botón azul en la parte inferior de la página. ¡Hazlo ahora y vuelve!
+Al jugar un nivel, no interactúas directamente con el contrato de lux. En su lugar, le pides que genere una **instancia de nivel** para ti. Para hacerlo, haz clic en el botón azul en la parte inferior de la página. ¡Hazlo ahora y vuelve!
 
 MetaMask debería solicitarle que autorices la transacción. Hazlo y deberías ver algunos mensajes en la consola. Ten en cuenta que esto está implementando un nuevo contrato en la red y puede demorar unos segundos, ¡así que ten paciencia al solicitar nuevas instancias!
 
 #### 8. Inspección del contrato
-Tal como lo hiciste con el contrato de ethernaut, puedes inspeccionar el ABI de este contrato a través de la consola usando la variable `contract`.
+Tal como lo hiciste con el contrato de lux, puedes inspeccionar el ABI de este contrato a través de la consola usando la variable `contract`.
 
 #### 9. Interactúa con el contrato para completar el nivel
 Mira el método de información de los niveles
@@ -74,6 +74,6 @@ contract.info ()
 
 Deberías tener todo lo que necesita para completar el nivel dentro del contrato.
 Cuando sepas que has completado el nivel, envía el contrato utilizando el botón naranja en la parte inferior de la página.
-Esto envía su instancia de nuevo a ethernaut, que determinará si lo has completado.
+Esto envía su instancia de nuevo a lux, que determinará si lo has completado.
 
 ##### Sugerencia: ¡no olvides que siempre puedes buscar en el ABI del contrato!

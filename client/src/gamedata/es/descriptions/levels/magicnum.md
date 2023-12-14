@@ -1,4 +1,4 @@
-Para resolver este nivel, solo necesitas proporcionar a Ethernaut un `Solver`, un contrato que responde a `whatIsTheMeaningOfLife()` con el número correcto.
+Para resolver este nivel, solo necesitas proporcionar a Lux un `Solver`, un contrato que responde a `whatIsTheMeaningOfLife()` con el número correcto.
 
 Fácil, ¿verdad?
 Bueno ... Hay una trampa.

@@ -173,7 +173,7 @@ abstract contract Initializable {
 
 
 contract Statistics is Initializable {
-    address public ethernaut;
+    address public lux;
     address[] public players;
     address[] public levels;
     uint256 private globalNoOfInstancesCreated;
@@ -213,16 +213,16 @@ contract Statistics is Initializable {
         require(doesPlayerExist(player), "Player doesn't exist");
         _;
     }
-    modifier onlyEthernaut() {
+    modifier onlyLux() {
         require(
-            msg.sender == ethernaut,
-            "Only Ethernaut can call this function"
+            msg.sender == lux,
+            "Only Lux can call this function"
         );
         _;
     }
 
-    function initialize(address _ethernautAddress) public initializer {
-        ethernaut = _ethernautAddress;
+    function initialize(address _luxAddress) public initializer {
+        lux = _luxAddress;
     }
 
     // Protected functions
@@ -230,7 +230,7 @@ contract Statistics is Initializable {
         address instance,
         address level,
         address player
-    ) external onlyEthernaut levelExistsCheck(level) {
+    ) external onlyLux levelExistsCheck(level) {
         if (!doesPlayerExist(player)) {
             players.push(player);
             playerExists[player] = true;
@@ -257,7 +257,7 @@ contract Statistics is Initializable {
         address instance,
         address level,
         address player
-    ) external onlyEthernaut levelExistsCheck(level) playerExistsCheck(player) {
+    ) external onlyLux levelExistsCheck(level) playerExistsCheck(player) {
         require(
             playerStats[player][level].instance != address(0),
             "Instance for the level is not created"
@@ -287,7 +287,7 @@ contract Statistics is Initializable {
         address instance,
         address level,
         address player
-    ) external onlyEthernaut levelExistsCheck(level) playerExistsCheck(player) {
+    ) external onlyLux levelExistsCheck(level) playerExistsCheck(player) {
         require(
             playerStats[player][level].instance != address(0),
             "Instance for the level is not created"
@@ -309,7 +309,7 @@ contract Statistics is Initializable {
     function saveNewLevel(address level)
         external
         levelDoesntExistCheck(level)
-        onlyEthernaut
+        onlyLux
     {
         levelExists[level] = true;
         levels.push(level);

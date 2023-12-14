@@ -165,7 +165,7 @@ export const SUPPORTS_EIP_1559 = [
 
 // Core contract keys
 export const CORE_CONTRACT_NAMES = [
-  "ethernaut",
+  "lux",
   "proxyAdmin",
   "implementation",
   "proxyStats",
@@ -173,8 +173,8 @@ export const CORE_CONTRACT_NAMES = [
 
 // Storage
 export const VERSION = "0.1.0";
-export const STORAGE_PLAYER_DATA_KEY = `ethernaut_player_data_${VERSION}_`;
-export const STORAGE_CONTRACT_DATA_KEY = `ethernaut_contract_data_`;
+export const STORAGE_PLAYER_DATA_KEY = `lux_player_data_${VERSION}_`;
+export const STORAGE_CONTRACT_DATA_KEY = `lux_contract_data_`;
 
 // Paths
 export const PATH_ROOT = "/";
@@ -212,8 +212,8 @@ export const ID_TO_NETWORK = id_to_network;
 // -----------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------
 
-export const ALIAS_PATH = "https://raw.githubusercontent.com/OpenZeppelin/ethernaut-leaderboard/update/boards/aliases.json"
+export const ALIAS_PATH = "https://raw.githubusercontent.com/OpenZeppelin/lux-leaderboard/update/boards/aliases.json"
 
 export const getLeaderboardPath = (network) => {
-  return `https://raw.githubusercontent.com/OpenZeppelin/ethernaut-leaderboard/update/boards/networkleaderboards/${network}LeaderBoard.json`
+  return `https://raw.githubusercontent.com/OpenZeppelin/lux-leaderboard/update/boards/networkleaderboards/${network}LeaderBoard.json`
 }

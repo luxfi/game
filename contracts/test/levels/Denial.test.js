@@ -2,7 +2,7 @@ const Denial = artifacts.require('./levels/Denial.sol');
 const DenialFactory = artifacts.require('./levels/DenialFactory.sol');
 const DenialAttack = artifacts.require('./attacks/DenialAttack.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const {
   BN,
   constants,
@@ -13,7 +13,7 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('Denial', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let instance;
   let player = accounts[0];
@@ -22,11 +22,11 @@ contract('Denial', function (accounts) {
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await DenialFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
     instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Denial,
@@ -47,7 +47,7 @@ contract('Denial', function (accounts) {
 
       // make sure the factory fails
       const ethCompleted = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player
@@ -62,7 +62,7 @@ contract('Denial', function (accounts) {
       await instance.setWithdrawPartner(denialAttack.address);
       // ensure the level is completed
       const ethCompleted = await utils.submitLevelInstance(
-        ethernaut,
+        lux,
         level.address,
         instance.address,
         player

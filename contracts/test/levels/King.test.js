@@ -2,7 +2,7 @@ const KingFactory = artifacts.require('./levels/KingFactory.sol');
 const King = artifacts.require('./attacks/King.sol');
 const KingAttack = artifacts.require('./attacks/KingAttack.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const {
   BN,
   constants,
@@ -13,21 +13,21 @@ const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('King', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let owner = accounts[1];
   let player = accounts[0];
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await KingFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
   });
 
   it('should allow the player to solve the level', async function () {
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       King,
@@ -74,7 +74,7 @@ contract('King', function (accounts) {
     //       player wins when the factory is not able to do this.
     //console.log('Check complete (should fail)...')
     let completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player
@@ -93,7 +93,7 @@ contract('King', function (accounts) {
     // Factory check (should pass)
     //console.log('Check complete (should pass)...')
     completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

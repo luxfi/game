@@ -81,10 +81,10 @@ class Header extends React.Component {
         }
       }
 
-      // Change The Ethernaut logo
-      var theEthernaut = document.getElementById("the-ethernaut");
-      if (theEthernaut && theEthernaut.style)
-        theEthernaut.style.filter = this.state.dark ? svgFilter() : null;
+      // Change The Lux logo
+      var theLux = document.getElementById("the-lux");
+      if (theLux && theLux.style)
+        theLux.style.filter = this.state.dark ? svgFilter() : null;
 
       // Change Arrow
       let isArrowInPage = document.getElementById("arrow");
@@ -189,10 +189,10 @@ class Header extends React.Component {
       //   ? svgFilter()
       //   : null;
 
-      // Change The Ethernaut logo
-      var theEthernaut = document.getElementById("the-ethernaut");
-      if (theEthernaut && theEthernaut.style)
-        theEthernaut.style.filter = !this.state.dark ? svgFilter() : null;
+      // Change The Lux logo
+      var theLux = document.getElementById("the-lux");
+      if (theLux && theLux.style)
+        theLux.style.filter = !this.state.dark ? svgFilter() : null;
 
       // Change Arrow
       let isArrowInPage = document.getElementById("arrow");
@@ -387,7 +387,7 @@ class Header extends React.Component {
                     <div className="dropdown-pill">
                       <a
                         className="contr"
-                        href="https://github.com/openzeppelin/ethernaut#modify-or-add-new-languages"
+                        href="https://github.com/openzeppelin/lux#modify-or-add-new-languages"
                       >
                         {strings.contributeTranslation}
                       </a>

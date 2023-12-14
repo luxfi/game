@@ -1,14 +1,14 @@
-# OZ-Ethernaut contract level replacement tool
+# OZ-Lux contract level replacement tool
 
 ## **Description**
 
 Change the contract code directly in the repo will change the front-end contract but not the on-chain bytecode of that level. Therefore, while players try to attack a level instance, the front-end will show a different contract than what they actually have to attack, they may differ with function names for example (i.e. selectors).
 
-[`supersede_level.mjs`](https://github.com/OpenZeppelin/ethernaut/blob/master/client/scripts/supersede_level.mjs) script implements a tool to supersede contract deployed on-chain when it will be required (when vulnerable code displayed on the front-end will not exactly match the deployed contracts).
+[`supersede_level.mjs`](https://github.com/OpenZeppelin/lux/blob/master/client/scripts/supersede_level.mjs) script implements a tool to supersede contract deployed on-chain when it will be required (when vulnerable code displayed on the front-end will not exactly match the deployed contracts).
 
 The tool performs the substitution by following these steps:
 - Deploys new level contract.
-- Registers level in Ethernaut.sol
+- Registers level in Lux.sol
 - Upgrades Statistics.sol to StatisticsLevelSuperseder.sol, a implementation that contains the logic to change statistics storage:
     - levelFirstInstanceCreationTime - dump from old level address to new one.
     - levelFirstCompletionTime - dump from old level address to new one.
@@ -23,20 +23,20 @@ All this process is required in order to avoid to the users to resolve both vers
 
 ## **Usage**
 
-### **Testnet (mainet for ethernaut XD)**
+### **Testnet (mainet for lux XD)**
 
-- Select the network in the [`constants.js`](https://github.com/OpenZeppelin/ethernaut/blob/client/src/constants.js) file by uncommenting the `ACTIVE_NETWORK` constant.
+- Select the network in the [`constants.js`](https://github.com/OpenZeppelin/lux/blob/client/src/constants.js) file by uncommenting the `ACTIVE_NETWORK` constant.
 
 - run the tool:
 ```bash
 yarn run supersede:level
 ```
 
-The tool will guide the operator through the process. Operator is the account that will trigger the storage dump operations in the statistics contract. Operator address can be changed by editing script's `OPERATOR_ADDRESS` constant, although it is recommended that this be ethernaut's owner.
+The tool will guide the operator through the process. Operator is the account that will trigger the storage dump operations in the statistics contract. Operator address can be changed by editing script's `OPERATOR_ADDRESS` constant, although it is recommended that this be lux's owner.
 
 The script contains a commented function `printEditedStorageSlots(oldAddress, newAddress)` that can be uncommented to prompt in the terminal all storage slots edited after the process. 
 
-Ethernaut contract will be halt during the operation, any call to  `createLevelInstance(Level _level)` or  `submitLevelInstance(address payable _instance)` will revet with `"Contract locked due maintenance operations"` string.
+Lux contract will be halt during the operation, any call to  `createLevelInstance(Level _level)` or  `submitLevelInstance(address payable _instance)` will revet with `"Contract locked due maintenance operations"` string.
 
 Original statistics implementation is hardcoded in `downgradeStatisticsSupersederToStatisticsAndSaveDeployData()` function it is not needed to deploy a new instance, ensure that you hardcode the correct address.
 
@@ -45,7 +45,7 @@ Dumping transactions gas usage can be tuned in `dumpData()` function.
 
 ### **Test in local fork**
 
-- Set ethernaut owner as main account in the hardhat local node by adding following configuration to [`hardhat.config.js`](https://github.com/OpenZeppelin/ethernaut/blob/master/contracts/hardhat.config.js)
+- Set lux owner as main account in the hardhat local node by adding following configuration to [`hardhat.config.js`](https://github.com/OpenZeppelin/lux/blob/master/contracts/hardhat.config.js)
 ```javascript
 
 ...

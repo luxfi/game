@@ -1,24 +1,24 @@
 const PuzzleProxy = artifacts.require('PuzzleProxy');
 const PuzzleWalletFactory = artifacts.require('PuzzleWalletFactory');
 const PuzzleWallet = artifacts.require('PuzzleWallet');
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 
 const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('PuzzleWallet', function ([player]) {
-  let ethernaut, level;
+  let lux, level;
   let statproxy;
 
   beforeEach(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await PuzzleWalletFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
   });
 
   it('should allow the player to solve the level', async function () {
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       PuzzleWallet,
@@ -85,7 +85,7 @@ contract('PuzzleWallet', function ([player]) {
 
     // check that the level was completed successfully
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player

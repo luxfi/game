@@ -128,10 +128,10 @@ class App extends React.Component {
           <section className="titles">
             <a href={constants.PATH_ROOT}>
               <img
-                id="the-ethernaut"
-                src="../../imgs/the-ethernaut.svg"
-                alt="The-Ethernaut"
-                className="the-ethernaut"
+                id="the-lux"
+                src="../../imgs/the-lux.svg"
+                alt="The-Lux"
+                className="the-lux"
               />
             </a>
             <img

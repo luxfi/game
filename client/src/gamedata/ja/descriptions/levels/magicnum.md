@@ -1,4 +1,4 @@
-このレベルを解くためには、Ethernaut に`Solver`（`whatIsTheMeaningOfLife()`に正しい数字で応答するコントラクト）を提供するだけでよいのです。
+このレベルを解くためには、Lux に`Solver`（`whatIsTheMeaningOfLife()`に正しい数字で応答するコントラクト）を提供するだけでよいのです。
 
 簡単でしょう？
 しかし...問題があります。

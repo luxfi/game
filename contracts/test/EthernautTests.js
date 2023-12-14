@@ -1,5 +1,5 @@
 /*eslint no-undef: "off"*/
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const DummyFactory = artifacts.require('./levels/DummyFactory.sol');
 const Dummy = artifacts.require('./levels/Dummy.sol');
 const FallbackFactory = artifacts.require('./levels/FallbackFactory.sol');
@@ -8,7 +8,7 @@ const { expectRevert } = require('openzeppelin-test-helpers');
 const utils = require('./utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
-contract('Ethernaut', function (accounts) {
+contract('Lux', function (accounts) {
   // ----------------------------------
   // Before
   // ----------------------------------
@@ -16,43 +16,43 @@ contract('Ethernaut', function (accounts) {
   let owner = accounts[0];
   let player = accounts[1];
   let player2 = accounts[2];
-  let ethernaut;
+  let lux;
   let ProxyStats;
   let statistics;
 
   before(async function () {
-    ethernaut = await Ethernaut.new();
+    lux = await Lux.new();
     const implementation = await ethers.getContractFactory('Statistics');
     ProxyStats = await upgrades.deployProxy(implementation, [
-      ethernaut.address,
+      lux.address,
     ]);
-    await ethernaut.setStatistics(ProxyStats.address);
+    await lux.setStatistics(ProxyStats.address);
 
     statistics = await ethers.getContractAt('Statistics', ProxyStats.address);
   });
 
   it(`should not allow a player to manufacture a solution instance`, async function () {
     const level = await FallbackFactory.new();
-    await ethernaut.registerLevel(level.address, { from: owner });
+    await lux.registerLevel(level.address, { from: owner });
     expect(await statistics.doesLevelExist(level.address)).to.equal(true);
 
     // Instead of solving the instance, the player manufactures an instance
     // with the desired state:
-    // const instance = await utils.createLevelInstance(ethernaut, level.address, player, Fallback)
+    // const instance = await utils.createLevelInstance(lux, level.address, player, Fallback)
     const instance = await Manufactured.new();
 
     await expectRevert.unspecified(
-      ethernaut.submitLevelInstance(instance.address, { from: player })
+      lux.submitLevelInstance(instance.address, { from: player })
     );
   });
 
   it(`should not allow player A to use player's B instance to complete a level`, async function () {
     const level = await DummyFactory.new();
-    await ethernaut.registerLevel(level.address, { from: owner });
+    await lux.registerLevel(level.address, { from: owner });
     expect(await statistics.doesLevelExist(level.address)).to.equal(true);
 
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Dummy
@@ -63,17 +63,17 @@ contract('Ethernaut', function (accounts) {
     assert.equal(completed, true);
 
     await expectRevert.unspecified(
-      ethernaut.submitLevelInstance(instance.address, { from: player2 })
+      lux.submitLevelInstance(instance.address, { from: player2 })
     );
   });
 
   it(`should not allow a player to generate 2 completion logs with the same instance`, async function () {
     const level = await DummyFactory.new();
-    await ethernaut.registerLevel(level.address, { from: owner });
+    await lux.registerLevel(level.address, { from: owner });
     expect(await statistics.doesLevelExist(level.address)).to.equal(true);
 
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Dummy
@@ -83,7 +83,7 @@ contract('Ethernaut', function (accounts) {
     assert.equal(completed, true);
 
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player
@@ -96,17 +96,17 @@ contract('Ethernaut', function (accounts) {
 
     // Resubmit instance
     await expectRevert.unspecified(
-      ethernaut.submitLevelInstance(instance.address)
+      lux.submitLevelInstance(instance.address)
     );
   });
 
   it(`should provide instances and verify completion`, async function () {
     const level = await DummyFactory.new();
-    await ethernaut.registerLevel(level.address, { from: owner });
+    await lux.registerLevel(level.address, { from: owner });
     expect(await statistics.doesLevelExist(level.address)).to.equal(true);
 
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Dummy
@@ -116,7 +116,7 @@ contract('Ethernaut', function (accounts) {
     assert.equal(completed, true);
 
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player
@@ -130,17 +130,17 @@ contract('Ethernaut', function (accounts) {
 
   it(`should provide instances and verify non-complettion`, async function () {
     const level = await DummyFactory.new();
-    await ethernaut.registerLevel(level.address, { from: owner });
+    await lux.registerLevel(level.address, { from: owner });
     expect(await statistics.doesLevelExist(level.address)).to.equal(true);
     const instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       Dummy
     );
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       instance.address,
       player
@@ -151,7 +151,7 @@ contract('Ethernaut', function (accounts) {
   it(`should not provide instances to non-registered level factories`, async function () {
     const level = await DummyFactory.new();
     await expectRevert.unspecified(
-      ethernaut.createLevelInstance(level.address, { from: player })
+      lux.createLevelInstance(level.address, { from: player })
     );
     expect(await statistics.doesLevelExist(level.address)).to.equal(false);
   });
@@ -159,7 +159,7 @@ contract('Ethernaut', function (accounts) {
   it(`should not allow anyone but the owner to upload a level`, async function () {
     const level = await DummyFactory.new();
     await expectRevert.unspecified(
-      ethernaut.registerLevel(level.address, { from: player })
+      lux.registerLevel(level.address, { from: player })
     );
     expect(await statistics.doesLevelExist(level.address)).to.equal(false);
   });

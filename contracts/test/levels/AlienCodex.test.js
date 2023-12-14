@@ -1,12 +1,12 @@
 const AlienCodex = artifacts.require('./levels/AlienCodex.sol');
 const AlienCodexFactory = artifacts.require('./levels/AlienCodexFactory.sol');
 
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const Lux = artifacts.require('./Lux.sol');
 const utils = require('../utils/TestUtils');
 const { ethers, upgrades } = require('hardhat');
 
 contract('AlienCodex', function (accounts) {
-  let ethernaut;
+  let lux;
   let level;
   let instance;
   let owner = accounts[1];
@@ -14,11 +14,11 @@ contract('AlienCodex', function (accounts) {
   let statproxy;
 
   before(async function () {
-    ethernaut = await utils.getEthernautWithStatsProxy();
+    lux = await utils.getLuxWithStatsProxy();
     level = await AlienCodexFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await lux.registerLevel(level.address);
     instance = await utils.createLevelInstance(
-      ethernaut,
+      lux,
       level.address,
       player,
       AlienCodex,

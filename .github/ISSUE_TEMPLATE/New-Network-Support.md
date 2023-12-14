@@ -13,24 +13,24 @@ This Issue is raised to add a support for a new network. To raise a PR for this 
 
 Make sure you have done the following transactions -
 - Deployment of the following core contracts:
-  - `Ethernaut.sol`
+  - `Game.sol`
   - `Statistics.sol`
   - `ProxyAdmin.sol`
   - `ProxyStats.sol`
-- `ProxyStats.sol` has been set in `Ethernaut.sol` by calling `setStatistics()`.
+- `ProxyStats.sol` has been set in `Game.sol` by calling `setStatistics()`.
 - All the levels' contracts:
   - Have been deployed.
-  - Are registered in the `Ethernaut.sol` by calling `registerLevel()`.
+  - Are registered in the `Game.sol` by calling `registerLevel()`.
 
 Make sure that the following checks are passing.
-- [ ] `ethernaut.address` in the console returns a valid address.
+- [ ] `game.address` in the console returns a valid address.
 - [ ] For all the levels:
   - [ ] You can visit them.
   - [ ] You can create their instances.
   - [ ] `instance` in the console returns a valid address after creating the instance.
 
 And after all the above checks are passed...
-- [ ] You have transferred the ownership of the `Ethernaut.sol` contract to the OpenZeppeling account (`0x09902A56d04a9446601a0d451E07459dC5aF0820`) by running `window.transferOwnerShip(0x09902A56d04a9446601a0d451E07459dC5aF0820)` in the browser console.
+- [ ] You have transferred the ownership of the `Game.sol` contract to the OpenZeppeling account (`0x09902A56d04a9446601a0d451E07459dC5aF0820`) by running `window.transferOwnerShip(0x09902A56d04a9446601a0d451E07459dC5aF0820)` in the browser console.
 
 That's it! Now you can submit this issue :D
 
@@ -40,12 +40,12 @@ Take note of the following things before you start. Because you will need them f
 - [ ] A short `name` of the network. For example: goerli-optimism, mumbai-polygon, sepolia, etc.
 - [ ] An `ALL_CAPS_NAME` for internal code. This is mostly the capitalised form of the above name with hyphens replaced by underscores.
 - [ ] A `chain_id` of the blockchain on which you have deployed the contracts.
-- [ ] The `currencyName` of the chain. For example: Optimism-ETH, Mumbai-Matic, Sepolia-ETH, etc. 
+- [ ] The `currencyName` of the chain. For example: Optimism-ETH, Mumbai-Matic, Sepolia-ETH, etc.
 - [ ] The `currencySymbol` of the chain. For example: ETH, MATIC, SEP, etc.
 - [ ] An `rpcUrl` for the network. For example: https://eth-goerli.public.blastapi.io, https://matic-mumbai.chainstacklabs.com, https://rpc.sepolia.org, etc.
 - [ ] A `blockExplorer` URL of the network. For example: https://goerli.etherscan.io, https://mumbai.polygonscan.com, https://sepolia.etherscan.io, etc.
 - [ ] Addresses of all the contracts of the game:
-  - [ ] `Ethernaut.sol`
+  - [ ] `Game.sol`
   - [ ] `Statistics.sol`
   - [ ] `ProxyAdmin.sol`
   - [ ] `ProxyStats.sol`
@@ -115,7 +115,7 @@ Make sure you have followed the below steps:
   "25": "x",
   "26": "x",
   "27": "x",
-  "ethernaut": "x",
+  "game": "x",
   "implementation": "x",
   "proxyAdmin": "x",
   "proxyStats": "x"
@@ -132,6 +132,6 @@ In the corresponding PR:
 - [ ] Start the project on this branch.
 - [ ] Run the following and check if it returns `true`.
 ```
-(await ethernaut.owner()) === '0x09902A56d04a9446601a0d451E07459dC5aF0820'
-``` 
+(await game.owner()) === '0x09902A56d04a9446601a0d451E07459dC5aF0820'
+```
 - [ ] Navigate all the levels and check if they are playable.

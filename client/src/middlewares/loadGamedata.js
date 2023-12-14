@@ -21,7 +21,7 @@ const loadGameData = store => next => action => {
         level.idx = i;
         levelsOut.push(level);
       }
-      action.ethernautAddress = deployData.ethernaut
+      action.luxAddress = deployData.lux
       action.levels = levelsOut;
     } else {
       const data = require(`../gamedata/gamedata.json`);

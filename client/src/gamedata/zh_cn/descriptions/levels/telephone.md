@@ -2,4 +2,4 @@
 
 &nbsp;
 这可能有用
-* 参阅帮助页面,在 ["Beyond the console"](https://ethernaut.openzeppelin.com/help) 部分
+* 参阅帮助页面,在 ["Beyond the console"](https://lux.openzeppelin.com/help) 部分

@@ -97,7 +97,7 @@ window.loadContracts = async function () {
 export const raiseIssue = async () => {
   const url = newGithubIssueUrl({
     user: 'OpenZeppelin',
-    repo: 'ethernaut',
+    repo: 'lux',
     template: 'New-Network-Support.md',
     title: 'New Network Support - [Network Name]',
   });

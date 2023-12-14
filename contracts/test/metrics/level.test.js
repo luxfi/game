@@ -9,7 +9,7 @@ contract('Level metrics', (accounts) => {
     let statistics;
 
     let [
-        ETHERNAUT_ADDRESS,
+        LUX_ADDRESS,
         PLAYER_ADDRESS_1,
         PLAYER_ADDRESS_2,
         LEVEL_FACTORY_ADDRESS_1,
@@ -24,7 +24,7 @@ contract('Level metrics', (accounts) => {
     
     before(async () => { 
         statistics = await Statistics.new();
-        await statistics.initialize(ETHERNAUT_ADDRESS);
+        await statistics.initialize(LUX_ADDRESS);
     })
 
     describe('Level metrics', function () {

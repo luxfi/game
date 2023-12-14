@@ -5,7 +5,7 @@ import HDWalletProvider from "@truffle/hdwallet-provider";
 import Web3 from "web3";
 import * as ethutil from "../src/utils/ethutil.js";
 import * as constants from "../src/constants.js";
-import * as EthernautABI from "contracts/build/contracts/Ethernaut.sol/Ethernaut.json" assert { type: "json" };
+import * as LuxABI from "contracts/build/contracts/Lux.sol/Lux.json" assert { type: "json" };
 import * as ProxyStatsABI from "contracts/build/contracts/proxy/ProxyStats.sol/ProxyStats.json" assert { type: "json" };
 import * as ProxyAdminABI from "contracts/build/contracts/proxy/ProxyAdmin.sol/ProxyAdmin.json" assert { type: "json" };
 import * as ImplementationABI from "contracts/build/contracts/metrics/Statistics.sol/Statistics.json" assert { type: "json" };
@@ -26,12 +26,12 @@ const levels = gamedata.levels;
 const DEPLOY_DATA_PATH = `./client/src/gamedata/deploy.${constants.ACTIVE_NETWORK.name}.json`;
 
 const DeployData = await loadDeployData(DEPLOY_DATA_PATH);
-// Operator address, the account that will perform the data dump (meant to be ethernaut owner).
+// Operator address, the account that will perform the data dump (meant to be lux owner).
 const OPERATOR_ADDRESS = constants.ADDRESSES[`${constants.ACTIVE_NETWORK.name}`];
 
 // Contract Objects
 let web3;
-let ethernaut;
+let lux;
 let proxyStats;
 let proxyStatsWithImplementationABI;
 let proxyStatsWithSupersederImplementationABI;
@@ -78,7 +78,7 @@ async function supersede() {
     // Print available levels list
     console.log(
       colors.bold.yellow(
-        "\nOpenZeppelin-Ethernaut contract level replacement tool, available levels:\n"
+        "\nOpenZeppelin-Lux contract level replacement tool, available levels:\n"
       )
     );
     levels.forEach((level) => {
@@ -88,9 +88,9 @@ async function supersede() {
     // Get operator's level choice
     console.log(colors.bold.yellow("\nWhich deployId do you want to supersede?"));
     const LevelToBeSupersededData = await getLevelToBeSupersededData();
-    // Check if level is registered into ethernaut and is not already superseded
+    // Check if level is registered into lux and is not already superseded
     if (!(await isLevelRegistered(LevelToBeSupersededData))) {
-      console.log(colors.bold.red("Level is not registered in Ethernaut"));
+      console.log(colors.bold.red("Level is not registered in Lux"));
       process.exit();
     }
     if (!(await doesLevelExistsInStatistics(LevelToBeSupersededData))) {
@@ -120,8 +120,8 @@ async function supersede() {
     oldAddress = ret.oldAddress;
     newAddress = ret.newAddress;
 
-   // Register new address in ethernaut
-    await registerLevelInEthernaut(newAddress, LevelToBeSupersededData);
+   // Register new address in lux
+    await registerLevelInLux(newAddress, LevelToBeSupersededData);
 
     // Set replacement addresses
     await setSubstitutionAddresses(oldAddress, newAddress);
@@ -167,7 +167,7 @@ async function getLevelToBeSupersededData() {
 
 async function isLevelRegistered(level) {
   const levelAddress = DeployData[level.deployId];
-  return await ethernaut.methods["registeredLevels(address)"](levelAddress);
+  return await lux.methods["registeredLevels(address)"](levelAddress);
 }
 
 async function doesLevelExistsInStatistics(level) {
@@ -302,8 +302,8 @@ function storeSubstitutionInDeployData(newLevelContract, level) {
   return DeployData.supersededAddresses[i - 1];
 }
 
-async function registerLevelInEthernaut(newAddress, level) {
-  console.log(colors.bold.yellow("\nRegistering level in Ethernaut contract..."));
+async function registerLevelInLux(newAddress, level) {
+  console.log(colors.bold.yellow("\nRegistering level in Lux contract..."));
 
   const props = {
     gasPrice: parseInt(await web3.eth.getGasPrice() * 1.10),
@@ -313,10 +313,10 @@ async function registerLevelInEthernaut(newAddress, level) {
   let from = constants.ADDRESSES[constants.ACTIVE_NETWORK.name];
   if (!from) from = (await web3.eth.getAccounts())[0];
 
-  await ethernaut.methods["registerLevel(address)"](newAddress, { from, ...props });
+  await lux.methods["registerLevel(address)"](newAddress, { from, ...props });
   //Check
   if (!(await isLevelRegistered(level))) {
-    console.log(colors.bold.red("New address level not registered in Ethernaut"));
+    console.log(colors.bold.red("New address level not registered in Lux"));
     process.exit();
   }
   if (!(await doesLevelExistsInStatistics(level))) {
@@ -643,7 +643,7 @@ async function printEditedStorageSlots(oldAddress, newAddress) {
   console.log("-------------------------------------------------");
   console.log("Levels array");
   let levelsArrayLength = await proxyStatsWithSupersederImplementationABI.methods[
-    "getTotalNoOfEthernautLevels()"
+    "getTotalNoOfLuxLevels()"
   ]();
   console.log(`length ${levelsArrayLength}`);
   let arrayIndex = 0;
@@ -686,11 +686,11 @@ async function loadGameContracts() {
   let from = constants.ADDRESSES[constants.ACTIVE_NETWORK.name];
   if (!from) from = (await web3.eth.getAccounts())[0];
 
-  // Ethernaut
-  const Ethernaut = await ethutil.getTruffleContract(EthernautABI.default, {
+  // Lux
+  const Lux = await ethutil.getTruffleContract(LuxABI.default, {
     from,
   });
-  ethernaut = await Ethernaut.at(DeployData.ethernaut);
+  lux = await Lux.at(DeployData.lux);
 
   // Statistics proxy
   const ProxyStats = await ethutil.getTruffleContract(ProxyStatsABI.default, {

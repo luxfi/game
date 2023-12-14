@@ -1,4 +1,4 @@
-A moticicleta do Ethernaut tem um novo design de motor atualizável.
+A moticicleta do Lux tem um novo design de motor atualizável.
 
 Você seria capaz de `selfdestruct` seu motor e inutilizar a moto?
 

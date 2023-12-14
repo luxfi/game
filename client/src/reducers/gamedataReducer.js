@@ -1,7 +1,7 @@
 import * as actions from '../actions';
 
 const initialState = {
-  ethernautAddress: undefined,
+  luxAddress: undefined,
   activeLevel: undefined,
   levels: []
 }
@@ -13,7 +13,7 @@ const gameDataReducer = function(state = initialState, action) {
       return {
         ...state,
         levels: action.levels,
-        ethernautAddress: action.ethernautAddress
+        luxAddress: action.luxAddress
       }
 
     case actions.ACTIVATE_LEVEL:
