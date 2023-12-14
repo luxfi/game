@@ -1,3 +1,6 @@
+## December 2023
+- Mainnet Launch quests
+
 ## August 2021
 - Filter out repeated log messages for mined transactions
 - Increased Sidebar width
@@ -9,7 +12,7 @@
 - Add multilanguage support
 - Update Remix link redirect
 - Better description for Denial level
-- Prevent double click on submitting or getting new level instances 
+- Prevent double click on submitting or getting new level instances
 - Reduced compiler warnings
 - Add Sentry for error tracking
 
